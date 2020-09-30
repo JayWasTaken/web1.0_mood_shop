@@ -27,19 +27,61 @@ for (let i=0; i<data.length; ++i) {
     button.innerHTML = "Add to Cart"
     newDiv.appendChild(button)
 
-    const cart = []
-
+   
+    // example
     // const obj = {name: "Shoe", price: 9.99, qty:3}
-
-    function addItem(name, price, qty) {
-        const item = { name: name, price: price, qty: 1 }
-        cart.push(name)
-    }
-    function showItems(name, price) {
-        // console.log(cart[0])
-        // console.log(cart.length)
-        console.log(`You have ${cart.length} items in your cart`)
-    }
-    addItem('Apple', .99)
-    showItems()
+    
 }
+const cart = []
+
+const obj = {}
+
+function addItem(name, price, qty) {
+    for (let i = 0; i < cart.length; i+= 1) {
+        if(cart[i].name === name) {
+            cart[i].qty += 1
+            return
+        }
+    }
+    const item = { name, price, qty: 1 }
+    cart.push(item)
+}
+function showItems() {
+    //examples to show stuff in cart
+    // console.log(cart[0])
+    // console.log(cart.length)
+    const qty = getQty()
+    console.log(`You have ${qty} items in your cart`)
+
+    for (let i = 0; i < cart.length; i += 1) {
+        console.log(` - ${cart[i].name} $${cart[i].price} x ${cart[i].qty} `)
+    }
+    let total = 0.00
+    for (let i = 0; i < cart.length; i += 1) {
+        total += cart[i].price * cart[i].qty
+    }
+    console.log(`Total in cart: $${getTotal()}`)
+}
+
+function getQty() {
+    let qty = 0
+    for (let i = 0; i < cart.length; i += 1) {
+        qty += cart[i].qty
+    }
+    return qty
+}
+
+function getTotal() {
+    let total = 0
+    for (let i = 0; i < cart.length; i += 1) {
+        total += cart[i].price * cart[i].qty
+    }
+    return total.toFixed(2)
+}
+addItem('Apple', .98)
+addItem('Apple', .98)
+addItem('Orange', 1.50)
+addItem('Opinion', .02)
+addItem('Orange', 1.50)
+
+showItems()
