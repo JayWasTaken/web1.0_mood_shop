@@ -27,9 +27,11 @@ body{
     grid-column-gap: 200px;
     margin-left: 100px;
     margin-top: 50px;
+    /* maybe look up justify content to center the images */
 }
 .item {
     flex-direction: column;
+    /* might be messing with margin and padding. when i used flex */
     border: solid 1px;
     width: 300px;
     margin-top: 30px;
