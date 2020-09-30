@@ -62,7 +62,7 @@ function showItems() {
     }
     console.log(`Total in cart: $${getTotal()}`)
 }
-
+//---------------------
 function getQty() {
     let qty = 0
     for (let i = 0; i < cart.length; i += 1) {
@@ -70,7 +70,7 @@ function getQty() {
     }
     return qty
 }
-
+//---------------------
 function getTotal() {
     let total = 0
     for (let i = 0; i < cart.length; i += 1) {
@@ -78,10 +78,33 @@ function getTotal() {
     }
     return total.toFixed(2)
 }
+//-----------------
+function removeItem(name, qty = 0) {
+    for (let i = 0; i < cart.length; i += 1) {
+        if (cart[i].name === name) {
+            if(qty > 0) {
+                cart[i].qty -= qty
+            }
+            if(cart[i].qty < 1 || qty === 0) {
+                cart.splice(i, 1)
+            }
+           
+            return
+        }
+    }
+}
+
+// ----------------
 addItem('Apple', .98)
 addItem('Apple', .98)
+addItem('Frisbee', 7.33)
 addItem('Orange', 1.50)
 addItem('Opinion', .02)
 addItem('Orange', 1.50)
+addItem('Apple', .98)
+
+showItems()
+
+removeItem('Apple', 2)
 
 showItems()
